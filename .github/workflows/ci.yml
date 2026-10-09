@@ -1,0 +1,83 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  core-api-validation:
+    name: Core API (Java 21 / Spring Boot)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Compile and validate Spring Boot Core API
+        working-directory: services/core-api
+        run: mvn -B clean compile
+
+  web-and-node-services:
+    name: Web Applications & Node Services
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate Customer Web App
+        working-directory: apps/customer-web
+        run: npm ci && npm run build
+
+      - name: Validate Store Web App
+        working-directory: apps/store-web
+        run: npm ci && npm run build
+
+      - name: Validate Admin Web App
+        working-directory: apps/admin-web
+        run: npm ci && npm run build
+
+      - name: Validate Realtime API Service
+        working-directory: services/realtime-api
+        run: npm ci && npm run build
+
+      - name: Validate Notification API Service
+        working-directory: services/notification-api
+        run: npm ci && npm run build
+
+  mobile-apps-validation:
+    name: Flutter Mobile Applications
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Analyze Customer Mobile App
+        working-directory: apps/customer-mobile
+        run: flutter pub get && flutter analyze
+
+      - name: Analyze Delivery Partner Mobile App
+        working-directory: apps/delivery-mobile
+        run: flutter pub get && flutter analyze
+
+      - name: Analyze Store Mobile App
+        working-directory: apps/store-mobile
+        run: flutter pub get && flutter analyze
