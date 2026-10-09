@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_theme.dart';
 
+import '../tracking/tracking_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -11,8 +13,14 @@ class HomeScreen extends StatelessWidget {
         title: const Text('FreshCart Grocery'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.shopping_bag_outlined),
-            onPressed: () {},
+            icon: const Icon(Icons.delivery_dining_outlined),
+            tooltip: 'Track Active Order',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const TrackingScreen()),
+              );
+            },
           ),
         ],
       ),
