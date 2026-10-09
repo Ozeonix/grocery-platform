@@ -1,3 +1,6 @@
+# Temporary skill staging directory (to be removed after migration)
+try-Skills/
+
 # Environment
 .env
 .env.*
