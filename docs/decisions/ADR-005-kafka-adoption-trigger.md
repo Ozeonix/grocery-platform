@@ -12,19 +12,23 @@ This ADR establishes explicit technical thresholds for when Apache Kafka must be
 
 ## Decision
 
-Continue using Redis Pub/Sub and direct synchronous REST calls until one or more of the following **hard triggers** occur:
+Continue using Redis Pub/Sub, BullMQ job queues, and direct synchronous Spring Boot execution until one or more of the following **review triggers** occur, at which point an architectural evaluation is conducted:
 
-### Trigger 1: Event Persistence & Consumer Replay Requirement
+> [!NOTE]
+> The thresholds below are strictly **review triggers** prompting evaluation of actual telemetry and operational overhead, **not unconditional migration rules**. See the authoritative [ADR-005: Kafka Adoption Review Triggers and Evaluation Criteria](file:///home/bhola-dev58/Ozeonix/grocery-platform/docs/decisions/ADR-005-kafka-adoption.md).
+
+### Review Trigger 1: Event Persistence & Consumer Replay Requirement
 - Business demands require replaying historic events from arbitrary offsets (e.g., rebuilding analytics read models, training machine learning demand forecasting models from event logs, or auditing historical pricing fluctuations).
 - *Redis limitation:* Redis Pub/Sub is fire-and-forget; if a consumer is offline, messages are lost.
 
-### Trigger 2: High Fan-Out Across Multiple Independent Consumer Services
+### Review Trigger 2: High Fan-Out Across Multiple Independent Consumer Services
 - More than 3 independent services subscribe to the same business event streams (e.g. Order Placed event must be consumed simultaneously by Inventory, Notifications, Analytics Data Lake, and Fraud Detection services at different processing speeds).
 - *Benefit:* Kafka consumer groups allow competing consumers to process at their own pace without impacting publishers.
 
-### Trigger 3: Sustained Event Volume Exceeding In-Memory Limits
+### Review Trigger 3: Sustained Event Volume Exceeding In-Memory Limits
 - Sustained event ingest exceeds **25,000 events/second** (e.g., city-wide high-frequency IoT telematics and fine-grained rider telemetry).
 - *Redis limitation:* Holding high-volume event buffers in Redis risks memory exhaustion and cache eviction.
+
 
 ## Transition Architecture Blueprint
 
