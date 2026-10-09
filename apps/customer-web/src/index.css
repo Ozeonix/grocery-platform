@@ -1,20 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --primary: #10b981;
-  --primary-hover: #059669;
-  --primary-light: #d1fae5;
-  --secondary: #0f172a;
-  --muted: #64748b;
-  --bg-main: #f8fafc;
-  --bg-card: #ffffff;
-  --border: #e2e8f0;
-  --danger: #ef4444;
-  --warning: #f59e0b;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /* Brand Core Colors (Ozeonix Palette) */
+  --color-primary: #FF6B00;          /* Primary Action / Add to Cart / Purchase */
+  --color-primary-hover: #E85F00;    /* Primary Hover */
+  --color-primary-soft: #FFF0E5;     /* Soft Orange Background */
+  --color-primary-subtle: #FFF8F2;   /* Very Subtle Orange Tint */
+
+  --color-emerald: #00A86B;          /* Freshness / Stock Available / Success */
+  --color-emerald-hover: #008653;    /* Success Hover */
+  --color-emerald-soft: #E6F6EF;     /* Soft Green Background */
+
+  --color-navy: #04284A;             /* Main Headings / Body Anchors / Nav */
+  --color-navy-dark: #021B33;        /* Darker Navy */
+  --color-navy-soft: #083E70;        /* Softer Navy for secondary anchors */
+
+  --color-ivory: #FFF9F0;            /* Warm Ivory Main Page Background */
+  --color-white: #FFFFFF;            /* Pure White for Cards / Panels / Forms */
+
+  --color-gray-cool: #E8EDF2;        /* Borders / Dividers / Subtle UI Fills */
+  --color-gray-light: #F8FAFC;       /* Light neutral surface */
+  --color-gray-slate: #64748B;       /* Secondary text / Metadata / Helper text */
+  --color-gray-muted: #94A3B8;       /* Disabled / Placeholder text */
+
+  --color-danger: #EF4444;           /* Out of stock / Destructive action */
+  --color-danger-soft: #FEE2E2;      /* Danger tint */
+  --color-warning: #F59E0B;          /* Low stock / Pending status */
+  --color-warning-soft: #FEF3C7;     /* Warning tint */
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Elevation Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(4, 40, 74, 0.04);
+  --shadow-sm: 0 2px 4px 0 rgba(4, 40, 74, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(4, 40, 74, 0.08), 0 2px 6px -1px rgba(4, 40, 74, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(4, 40, 74, 0.10), 0 4px 8px -2px rgba(4, 40, 74, 0.05);
+  --shadow-xl: 0 20px 32px -8px rgba(4, 40, 74, 0.14);
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -24,63 +58,166 @@
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--secondary);
+  font-family: var(--font-family);
+  background-color: var(--color-ivory);
+  color: var(--color-navy);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 input, select, textarea {
   font-family: inherit;
+  color: var(--color-navy);
+}
+
+input::placeholder {
+  color: var(--color-gray-muted);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 }
 
+/* Button Component Tokens */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   font-weight: 600;
   border-radius: var(--radius-md);
   padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   border: 1px solid transparent;
+  user-select: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 2px 6px rgba(255, 107, 0, 0.28);
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 4px 10px rgba(255, 107, 0, 0.38);
+}
+
+.btn-secondary {
+  background-color: var(--color-emerald);
+  color: var(--color-white);
+  box-shadow: 0 2px 6px rgba(0, 168, 107, 0.28);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-emerald-hover);
 }
 
 .btn-outline {
-  border-color: var(--border);
-  background-color: white;
-  color: var(--secondary);
+  border-color: var(--color-gray-cool);
+  background-color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .btn-outline:hover {
-  background-color: #f1f5f9;
+  background-color: var(--color-gray-light);
+  border-color: var(--color-gray-slate);
 }
 
+.btn-ghost {
+  color: var(--color-navy);
+  background-color: transparent;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-gray-cool);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+}
+
+/* Card Component Tokens */
 .card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-cool);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  padding: 1.5rem;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Badge System */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.badge-fresh {
+  background-color: var(--color-emerald-soft);
+  color: var(--color-emerald);
+  border: 1px solid rgba(0, 168, 107, 0.2);
+}
+
+.badge-promo {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+}
+
+.badge-navy {
+  background-color: rgba(4, 40, 74, 0.08);
+  color: var(--color-navy);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-cool);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-muted);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-slate);
 }

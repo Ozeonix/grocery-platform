@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import {
+  CloseIcon,
+  CheckIcon,
+  TruckIcon,
+  PhoneIcon,
+  ShieldCheckIcon,
+  StarIcon,
+  LocationIcon
+} from '../../shared/components/Icons';
 
 interface OrderTrackingModalProps {
   isOpen: boolean;
@@ -11,18 +20,18 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
   isOpen,
   onClose,
   orderNumber = 'ORD-1712-4912',
-  deliveryOtp = '839201',
+  deliveryOtp = '749102',
 }) => {
-  const [currentStep, setCurrentStep] = useState(3); // 0 to 4
-  const [etaMinutes, setEtaMinutes] = useState(18);
+  const [currentStep] = useState(3); // 0 to 4
+  const [etaMinutes, setEtaMinutes] = useState(16);
 
   useEffect(() => {
     if (!isOpen) return;
 
-    // Simulate realtime progress updates
+    // Simulate ETA updates
     const interval = setInterval(() => {
       setEtaMinutes((prev) => (prev > 1 ? prev - 1 : 1));
-    }, 15000);
+    }, 12000);
 
     return () => clearInterval(interval);
   }, [isOpen]);
@@ -30,155 +39,251 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
   if (!isOpen) return null;
 
   const STEPS = [
-    { title: 'Order Confirmed', desc: 'Payment verified and sent to merchant', icon: '✅' },
-    { title: 'Store Preparing', desc: 'Packing fresh items at Fresh Harvest Market', icon: '🏪' },
-    { title: 'Rider Assigned', desc: 'Alex Mercer (Motorbike • KA-03-HA-8821)', icon: '🛵' },
-    { title: 'Out for Delivery', desc: 'Rider is on the way to your doorstep', icon: '⚡' },
-    { title: 'Delivered', desc: 'Handed over with secure OTP verification', icon: '🎉' },
+    { title: 'Order Verified', desc: 'Payment approved & routed to merchant store' },
+    { title: 'Fresh Items Packed', desc: 'Fresh Harvest Market packed your harvest' },
+    { title: 'Rider Dispatched', desc: 'Rider picked up order from grocery hub' },
+    { title: 'Out for Delivery', desc: 'On route to your destination (2.1 km away)' },
+    { title: 'Delivered', desc: 'Handover complete with secure OTP verification' },
   ];
 
   return (
     <div style={{
       position: 'fixed',
       inset: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      backgroundColor: 'rgba(4, 40, 74, 0.65)',
+      backdropFilter: 'blur(4px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: 60,
-      padding: '1rem',
+      zIndex: 70,
+      padding: '1.25rem'
     }}>
       <div className="card" style={{
         maxWidth: '560px',
         width: '100%',
-        backgroundColor: 'white',
-        borderRadius: 'var(--radius-lg)',
-        boxShadow: 'var(--shadow-lg)',
+        backgroundColor: 'var(--color-white)',
+        borderRadius: 'var(--radius-xl)',
+        boxShadow: 'var(--shadow-xl)',
         padding: '2rem',
         maxHeight: '90vh',
         overflowY: 'auto',
+        position: 'relative'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-          <div>
-            <span style={{
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              backgroundColor: '#e0f2fe',
-              color: '#0369a1',
-              padding: '0.2rem 0.5rem',
-              borderRadius: '9999px',
-            }}>
-              ● LIVE REALTIME TRACKING
-            </span>
-            <h3 style={{ fontSize: '1.375rem', fontWeight: 700, marginTop: '0.5rem' }}>
-              Order #{orderNumber}
-            </h3>
-          </div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: '1.25rem', cursor: 'pointer' }}>
-            ✕
-          </button>
-        </div>
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: '1.25rem',
+            right: '1.25rem',
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--color-gray-light)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}
+        >
+          <CloseIcon size={16} />
+        </button>
 
-        {/* ETA & OTP Banner */}
-        <div style={{
-          backgroundColor: '#f0fdf4',
-          border: '1px solid #bbf7d0',
-          borderRadius: 'var(--radius-md)',
-          padding: '1.25rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '2rem',
-        }}>
-          <div>
-            <span style={{ fontSize: '0.8125rem', color: '#166534', fontWeight: 600 }}>Estimated Delivery</span>
-            <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#15803d' }}>
-              ~{etaMinutes} Mins
+        {/* Header with Live ETA */}
+        <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <span className="badge badge-fresh">
+              <span style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--color-emerald)',
+                display: 'inline-block'
+              }} />
+              LIVE DISPATCH
+            </span>
+            <span style={{ fontSize: '0.8125rem', color: 'var(--color-gray-slate)' }}>
+              Order #{orderNumber}
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+            <div>
+              <h2 style={{ fontSize: '1.625rem', fontWeight: 800, color: 'var(--color-navy)', letterSpacing: '-0.02em' }}>
+                Arriving in {etaMinutes} Mins
+              </h2>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--color-gray-slate)' }}>
+                Estimated Delivery: Today at 8:45 PM
+              </p>
+            </div>
+
+            {/* OTP Security Token */}
+            <div style={{
+              padding: '0.5rem 0.875rem',
+              backgroundColor: 'var(--color-primary-soft)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--color-primary)',
+              textAlign: 'center'
+            }}>
+              <span style={{ fontSize: '0.625rem', fontWeight: 700, color: 'var(--color-primary)', display: 'block', textTransform: 'uppercase' }}>
+                Delivery OTP
+              </span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-primary)', letterSpacing: '0.1em' }}>
+                {deliveryOtp}
+              </span>
             </div>
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted)', display: 'block' }}>Delivery Verification OTP</span>
-            <span style={{
-              fontSize: '1.375rem',
-              fontWeight: 800,
-              letterSpacing: '0.15em',
-              color: 'var(--primary)',
-              backgroundColor: 'white',
-              padding: '0.25rem 0.75rem',
-              borderRadius: 'var(--radius-sm)',
-              border: '1px solid var(--border)',
-            }}>
-              {deliveryOtp}
-            </span>
-          </div>
         </div>
 
-        {/* Live Rider Map Representation */}
+        {/* Simulated Route Tracking Map Canvas */}
         <div style={{
-          height: '160px',
-          backgroundColor: '#e2e8f0',
-          borderRadius: 'var(--radius-md)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: '2rem',
+          height: '140px',
+          borderRadius: 'var(--radius-lg)',
+          backgroundColor: 'var(--color-ivory)',
+          border: '1px solid var(--color-gray-cool)',
           position: 'relative',
           overflow: 'hidden',
-          border: '1px solid var(--border)',
+          marginBottom: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}>
-          <div style={{ fontSize: '2rem' }}>🗺️</div>
-          <p style={{ fontWeight: 600, fontSize: '0.875rem', marginTop: '0.25rem', color: '#334155' }}>
-            Live GPS Tracking Active
-          </p>
-          <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
-            Rider is 1.4 km away • Moving at ~26 km/h
-          </span>
+          {/* Stylized simulated road grid */}
           <div style={{
             position: 'absolute',
-            bottom: '10px',
-            right: '12px',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            padding: '0.2rem 0.5rem',
-            borderRadius: '9999px',
-            fontSize: '0.6875rem',
-            fontWeight: 600,
+            inset: 0,
+            backgroundImage: 'radial-gradient(var(--color-gray-cool) 1px, transparent 1px)',
+            backgroundSize: '16px 16px',
+            opacity: 0.6
+          }} />
+
+          {/* Route path line */}
+          <div style={{
+            position: 'absolute',
+            width: '60%',
+            height: '4px',
+            backgroundColor: 'var(--color-emerald)',
+            borderRadius: '2px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
-            📍 12.9716° N, 77.5946° E
+            {/* Store Icon */}
+            <div style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-white)',
+              border: '2px solid var(--color-navy)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transform: 'translateX(-50%)',
+              boxShadow: 'var(--shadow-sm)'
+            }}>
+              <ShieldCheckIcon size={14} color="var(--color-navy)" />
+            </div>
+
+            {/* Rider Pin */}
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-primary)',
+              color: 'var(--color-white)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 10px rgba(255, 107, 0, 0.4)'
+            }}>
+              <TruckIcon size={16} color="#FFFFFF" />
+            </div>
+
+            {/* Destination Pin */}
+            <div style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-white)',
+              border: '2px solid var(--color-emerald)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transform: 'translateX(50%)',
+              boxShadow: 'var(--shadow-sm)'
+            }}>
+              <LocationIcon size={14} color="var(--color-emerald)" />
+            </div>
+          </div>
+
+          <div style={{
+            position: 'absolute',
+            bottom: '0.625rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.92)',
+            padding: '0.25rem 0.75rem',
+            borderRadius: 'var(--radius-full)',
+            fontSize: '0.6875rem',
+            fontWeight: 700,
+            color: 'var(--color-navy)',
+            boxShadow: 'var(--shadow-xs)'
+          }}>
+            Rider is 1.2 km away • Realtime GPS Active
           </div>
         </div>
 
-        {/* Timeline Steps */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        {/* Delivery Timeline Stepper */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
           {STEPS.map((step, idx) => {
-            const isDone = idx <= currentStep;
+            const isCompleted = idx < currentStep;
             const isCurrent = idx === currentStep;
 
             return (
-              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+              <div key={idx} style={{ display: 'flex', gap: '1rem', position: 'relative' }}>
+                {/* Step Connector Line */}
+                {idx < STEPS.length - 1 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '24px',
+                    left: '11px',
+                    width: '2px',
+                    height: 'calc(100% + 4px)',
+                    backgroundColor: isCompleted ? 'var(--color-emerald)' : 'var(--color-gray-cool)'
+                  }} />
+                )}
+
+                {/* Step Icon Indicator */}
                 <div style={{
-                  width: '2rem',
-                  height: '2rem',
-                  borderRadius: '9999px',
-                  backgroundColor: isDone ? 'var(--primary-light)' : '#f1f5f9',
-                  border: isCurrent ? '2px solid var(--primary)' : '1px solid transparent',
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: '50%',
+                  backgroundColor: isCompleted
+                    ? 'var(--color-emerald)'
+                    : isCurrent
+                    ? 'var(--color-primary)'
+                    : 'var(--color-gray-cool)',
+                  color: 'var(--color-white)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '1rem',
-                  flexShrink: 0,
+                  zIndex: 2,
+                  flexShrink: 0
                 }}>
-                  {step.icon}
+                  {isCompleted ? (
+                    <CheckIcon size={14} color="#FFFFFF" />
+                  ) : (
+                    <span style={{ fontSize: '0.6875rem', fontWeight: 800 }}>{idx + 1}</span>
+                  )}
                 </div>
+
                 <div>
                   <h4 style={{
-                    fontSize: '0.9375rem',
-                    fontWeight: isDone ? 700 : 500,
-                    color: isDone ? 'var(--foreground)' : 'var(--muted)',
+                    fontSize: '0.875rem',
+                    fontWeight: 700,
+                    color: isCurrent ? 'var(--color-primary)' : 'var(--color-navy)'
                   }}>
                     {step.title}
                   </h4>
-                  <p style={{ fontSize: '0.8125rem', color: 'var(--muted)', marginTop: '0.125rem' }}>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--color-gray-slate)' }}>
                     {step.desc}
                   </p>
                 </div>
@@ -187,13 +292,56 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
           })}
         </div>
 
-        <button
-          onClick={onClose}
-          className="btn btn-outline"
-          style={{ width: '100%', marginTop: '2rem', padding: '0.75rem' }}
-        >
-          Close Tracking
-        </button>
+        {/* Rider Card */}
+        <div style={{
+          padding: '1rem',
+          backgroundColor: 'var(--color-ivory)',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid var(--color-gray-cool)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-navy)',
+              color: 'var(--color-white)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 800,
+              fontSize: '1rem'
+            }}>
+              AM
+            </div>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
+                <h4 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--color-navy)' }}>
+                  Alex Mercer
+                </h4>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', fontSize: '0.75rem', color: 'var(--color-navy)', fontWeight: 700 }}>
+                  <StarIcon size={12} color="#F59E0B" />
+                  <span>4.9</span>
+                </div>
+              </div>
+              <span style={{ fontSize: '0.75rem', color: 'var(--color-gray-slate)' }}>
+                Motorbike • BA 2 PA 4912
+              </span>
+            </div>
+          </div>
+
+          <a
+            href="tel:+9779801020304"
+            className="btn btn-outline btn-sm"
+            style={{ fontWeight: 700, color: 'var(--color-primary)', borderColor: 'var(--color-primary)' }}
+          >
+            <PhoneIcon size={14} color="var(--color-primary)" />
+            <span>Call Rider</span>
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --primary: #059669;
-  --secondary: #0f172a;
-  --muted: #64748b;
-  --bg-main: #f8fafc;
-  --bg-card: #ffffff;
-  --border: #e2e8f0;
+  /* Ozeonix Brand Identity System */
+  --color-primary: #FF6B00;
+  --color-primary-hover: #E85F00;
+  --color-primary-soft: #FFF0E5;
+
+  --color-emerald: #00A86B;
+  --color-emerald-hover: #008653;
+  --color-emerald-soft: #E6F6EF;
+
+  --color-navy: #04284A;
+  --color-navy-dark: #021B33;
+  --color-navy-light: #0B3B66;
+
+  --color-ivory: #FFF9F0;
+  --color-white: #FFFFFF;
+
+  --color-cool-gray: #E8EDF2;
+  --color-cool-gray-light: #F4F7F9;
+  --color-slate: #64748B;
+  --color-slate-light: #94A3B8;
+
+  --color-danger: #EF4444;
+  --color-danger-soft: #FEF2F2;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgba(4, 40, 74, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(4, 40, 74, 0.08), 0 2px 4px -2px rgba(4, 40, 74, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(4, 40, 74, 0.1), 0 4px 6px -4px rgba(4, 40, 74, 0.05);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 }
 
 * {
@@ -14,31 +42,176 @@
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--secondary);
+  font-family: var(--font-sans);
+  background-color: var(--color-ivory);
+  color: var(--color-navy);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  padding: 1.25rem;
+/* Card & Surface Containers */
+.store-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-cool-gray);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+.store-card:hover {
+  border-color: #D1D9E0;
+}
+
+/* Button System */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
   font-weight: 600;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
   font-size: 0.875rem;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-emerald {
+  background-color: var(--color-emerald);
+  color: var(--color-white);
+}
+
+.btn-emerald:hover {
+  background-color: var(--color-emerald-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-cool-gray);
+  color: var(--color-navy);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-cool-gray-light);
+  border-color: var(--color-slate-light);
+}
+
+.btn-soft {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.btn-soft:hover {
+  background-color: #FFE5D4;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-emerald {
+  background-color: var(--color-emerald-soft);
+  color: var(--color-emerald);
+}
+
+.badge-orange {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.badge-navy {
+  background-color: rgba(4, 40, 74, 0.08);
+  color: var(--color-navy);
+}
+
+.badge-danger {
+  background-color: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+/* Tables */
+.store-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.store-table th {
+  background-color: var(--color-cool-gray-light);
+  color: var(--color-slate);
+  font-weight: 600;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--color-cool-gray);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.store-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-cool-gray);
+  color: var(--color-navy);
+  vertical-align: middle;
+}
+
+.store-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.store-table tbody tr:hover {
+  background-color: rgba(255, 249, 240, 0.6);
+}
+
+/* Inputs */
+.input-control {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-cool-gray);
+  background-color: var(--color-white);
+  color: var(--color-navy);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .store-layout {
+    flex-direction: column !important;
+  }
+  .store-sidebar {
+    width: 100% !important;
+  }
 }
