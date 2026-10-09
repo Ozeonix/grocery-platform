@@ -1,0 +1,8 @@
+{
+  "name": "@grocery/constants",
+  "version": "1.0.0",
+  "description": "Shared application domain constants for Grocery Platform",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "private": true
+}
