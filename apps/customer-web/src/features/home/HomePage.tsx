@@ -16,7 +16,11 @@ const FEATURED_PRODUCTS = [
   { id: 'p4', name: 'Crisp Honeycrisp Apples', unit: '1 kg bag', price: 3.99, compare: 4.50, badge: 'In Season' }
 ];
 
-export const HomePage: React.FC = () => {
+interface HomePageProps {
+  onAddToCart?: (product: any) => void;
+}
+
+export const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
   return (
     <main className="container" style={{ padding: '2rem 1.5rem' }}>
       {/* Hero Banner */}
@@ -130,7 +134,11 @@ export const HomePage: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <button className="btn btn-primary" style={{ padding: '0.375rem 0.75rem', fontSize: '0.8125rem' }}>
+                <button
+                  onClick={() => onAddToCart?.(prod)}
+                  className="btn btn-primary"
+                  style={{ padding: '0.375rem 0.75rem', fontSize: '0.8125rem', cursor: 'pointer' }}
+                >
                   + Add
                 </button>
               </div>

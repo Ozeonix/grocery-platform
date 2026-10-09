@@ -3,9 +3,11 @@ import { useAuth } from '../../app/providers/AuthContext';
 
 interface NavbarProps {
   onOpenAuth: () => void;
+  onOpenCart?: () => void;
+  cartCount?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenCart, cartCount = 0 }) => {
   const { user, logout } = useAuth();
 
   return (
@@ -77,7 +79,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
             </button>
           )}
 
-          <button className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <button
+            onClick={onOpenCart}
+            className="btn btn-outline"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
+          >
             <span>🛍️</span>
             <span>Cart</span>
             <span style={{
@@ -87,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               borderRadius: '9999px',
               fontSize: '0.75rem',
               fontWeight: 700
-            }}>0</span>
+            }}>{cartCount}</span>
           </button>
         </div>
       </div>
