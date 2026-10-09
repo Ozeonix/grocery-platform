@@ -2,6 +2,7 @@ package com.yourcompany.grocery.payments.service;
 
 import com.yourcompany.grocery.common.exception.BadRequestException;
 import com.yourcompany.grocery.common.exception.ResourceNotFoundException;
+import com.yourcompany.grocery.delivery.service.DeliveryService;
 import com.yourcompany.grocery.orders.entity.Order;
 import com.yourcompany.grocery.orders.entity.OrderStatusHistory;
 import com.yourcompany.grocery.orders.repository.OrderRepository;
@@ -32,6 +33,7 @@ public class PaymentService {
     private final OrderStatusHistoryRepository statusHistoryRepository;
     private final UserRepository userRepository;
     private final PaymentGateway paymentGateway;
+    private final DeliveryService deliveryService;
 
     @Transactional
     public PaymentDto processPayment(UUID customerId, ProcessPaymentRequest request) {
@@ -98,6 +100,7 @@ public class PaymentService {
                         .changedBy(order.getCustomer())
                         .build();
                 statusHistoryRepository.save(history);
+                deliveryService.createDeliveryForOrder(order);
             }
         } else {
             payment.setStatus("FAILED");
