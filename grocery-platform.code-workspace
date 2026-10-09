@@ -1,8 +1,572 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "name": "\ud83c\udfe0 Root",
+      "path": "."
+    },
+    {
+      "name": "\u2699\ufe0f Core API (Spring Boot \u00b7 Java 21)",
+      "path": "services/core-api"
+    },
+    {
+      "name": "\ud83d\udd34 Realtime API (Node.js \u00b7 WebSocket)",
+      "path": "services/realtime-api"
+    },
+    {
+      "name": "\ud83d\udd14 Notification API (Node.js)",
+      "path": "services/notification-api"
+    },
+    {
+      "name": "\u26a1 Worker (Node.js \u00b7 BullMQ)",
+      "path": "services/worker"
+    },
+    {
+      "name": "\ud83c\udf10 Customer Web (React 18 \u00b7 TypeScript)",
+      "path": "apps/customer-web"
+    },
+    {
+      "name": "\ud83c\udfea Store Web (React 18 \u00b7 TypeScript)",
+      "path": "apps/store-web"
+    },
+    {
+      "name": "\ud83d\udd11 Admin Web (React 18 \u00b7 TypeScript)",
+      "path": "apps/admin-web"
+    },
+    {
+      "name": "\ud83d\udcf1 Customer Mobile (Flutter)",
+      "path": "apps/customer-mobile"
+    },
+    {
+      "name": "\ud83d\udef5 Delivery Mobile (Flutter)",
+      "path": "apps/delivery-mobile"
+    },
+    {
+      "name": "\ud83c\udfec Store Mobile (Flutter)",
+      "path": "apps/store-mobile"
+    },
+    {
+      "name": "\ud83d\udce6 Packages (Shared)",
+      "path": "packages"
+    },
+    {
+      "name": "\ud83d\uddc4\ufe0f Database (Migrations \u00b7 Seeds)",
+      "path": "database"
+    },
+    {
+      "name": "\ud83c\udfd7\ufe0f Infrastructure (Docker \u00b7 Nginx \u00b7 Monitoring \u00b7 CI)",
+      "path": "infrastructure"
+    },
+    {
+      "name": "\ud83d\udcda Docs & ADRs",
+      "path": "docs"
+    },
+    {
+      "name": "\ud83e\udd16 Agent Skills & Brain",
+      "path": ".agent"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.rulers": [
+      100,
+      120
+    ],
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.suggest.preview": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.linkedEditing": true,
+    "editor.minimap.enabled": false,
+    "editor.scrollBeyondLastLine": false,
+    "editor.stickyScroll.enabled": true,
+    "[java]": {
+      "editor.tabSize": 4,
+      "editor.defaultFormatter": "redhat.java"
+    },
+    "java.jdt.ls.java.home": "",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.sources.organizeImports.starThreshold": 3,
+    "java.sources.organizeImports.staticStarThreshold": 3,
+    "spring-boot.ls.problem.application-properties.UNKNOWN_PROPERTY_KEY": "WARNING",
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true,
+    "javascript.suggest.autoImports": true,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+    "eslint.workingDirectories": [
+      "apps/customer-web",
+      "apps/store-web",
+      "apps/admin-web",
+      "services/realtime-api",
+      "services/notification-api",
+      "services/worker"
+    ],
+    "[dart]": {
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "Dart-Code.dart-code",
+      "editor.selectionHighlight": false,
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.suggestSelection": "first",
+      "editor.tabCompletion": "onlySnippets",
+      "editor.wordBasedSuggestions": "off"
+    },
+    "dart.flutterSdkPath": "",
+    "dart.lineLength": 120,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "[yaml]": {
+      "editor.defaultFormatter": "redhat.vscode-yaml",
+      "editor.tabSize": 2
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+      "editor.wordWrap": "on",
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+      }
+    },
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml",
+      "https://json.schemastore.org/docker-compose.json": "docker-compose*.yml"
+    },
+    "files.associations": {
+      "*.env.example": "dotenv",
+      "Dockerfile*": "dockerfile",
+      "*.conf": "nginx",
+      "*.properties": "properties",
+      "prometheus.yml": "yaml",
+      "*.sql": "sql"
+    },
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/target": true,
+      "**/.gradle": true,
+      "**/.dart_tool": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/.pub-cache": true,
+      "**/coverage": true,
+      "**/.venv": true,
+      "try-Skills": true,
+      ".agent/skills/software-development": true,
+      ".agent/skills/cloud-infrastructure-security": true,
+      ".agent/skills/ai-agent-systems": true,
+      ".agent/skills/data-analytics": true,
+      ".agent/skills/business-operations": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/target/**": true,
+      "**/.gradle/**": true,
+      "**/.dart_tool/**": true,
+      "**/build/**": true,
+      "**/.pub-cache/**": true,
+      "try-Skills/**": true,
+      ".agent/skills/software-development/**": true,
+      ".agent/skills/cloud-infrastructure-security/**": true,
+      ".agent/skills/ai-agent-systems/**": true,
+      ".agent/skills/data-analytics/**": true,
+      ".agent/skills/business-operations/**": true
+    },
+    "files.exclude": {
+      "**/.git": true,
+      "**/node_modules": true,
+      "**/target": true,
+      "**/.gradle": true,
+      "**/.dart_tool": true,
+      "**/.flutter-plugins": true,
+      "**/.flutter-plugins-dependencies": true,
+      "**/.packages": true,
+      "try-Skills": true
+    },
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.ignoreLimitWarning": true,
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "terminal.integrated.env.linux": {
+      "COMPOSE_PROJECT_NAME": "grocery-platform"
+    },
+    "explorer.compactFolders": false,
+    "explorer.confirmDelete": false,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "${capture}.js, ${capture}.d.ts, ${capture}.test.ts, ${capture}.spec.ts",
+      "*.tsx": "${capture}.test.tsx, ${capture}.spec.tsx, ${capture}.css, ${capture}.module.css",
+      "package.json": "package-lock.json, yarn.lock, .npmrc, .nvmrc, .node-version, tsconfig*.json, .eslintrc*, .prettierrc*, jest.config.*",
+      "pubspec.yaml": "pubspec.lock, analysis_options.yaml, dart_test.yaml",
+      "docker-compose.yml": "docker-compose.*.yml, .dockerignore",
+      ".env.example": ".env, .env.*"
+    },
+    "rest-client.environmentVariables": {
+      "local": {
+        "baseUrl": "http://localhost:8080/api/v1",
+        "realtimeUrl": "http://localhost:3001",
+        "notificationUrl": "http://localhost:3002"
+      }
+    },
+    "jest.rootPath": "apps/customer-web",
+    "testing.automaticallyOpenPeekView": "failureAnywhere",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.tree.expandMode": "singleClick",
+    "breadcrumbs.enabled": true
+  },
+  "extensions": {
+    "recommendations": [
+      "redhat.java",
+      "vscjava.vscode-java-pack",
+      "vmware.vscode-spring-boot",
+      "vscjava.vscode-spring-boot-dashboard",
+      "vscjava.vscode-maven",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bradlc.vscode-tailwindcss",
+      "formulahendry.auto-rename-tag",
+      "steoates.autoimport",
+      "Dart-Code.dart-code",
+      "Dart-Code.flutter",
+      "ms-azuretools.vscode-docker",
+      "redhat.vscode-yaml",
+      "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "mtxr.sqltools",
+      "mtxr.sqltools-driver-pg",
+      "cweijan.vscode-redis-client",
+      "humao.rest-client",
+      "eamodio.gitlens",
+      "mhutchie.git-graph",
+      "yzhang.markdown-all-in-one",
+      "bierner.markdown-mermaid",
+      "streetsidesoftware.code-spell-checker",
+      "gruntfuggly.todo-tree",
+      "usernamehw.errorlens",
+      "wayou.vscode-todo-highlight"
+    ],
+    "unwantedRecommendations": []
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Core API (Spring Boot Dev)",
+        "request": "launch",
+        "mainClass": "com.yourcompany.grocery.GroceryCoreApiApplication",
+        "projectName": "core-api",
+        "args": "--spring.profiles.active=dev",
+        "envFile": "${workspaceFolder}/.env",
+        "cwd": "${workspaceFolder}/services/core-api"
+      },
+      {
+        "type": "node",
+        "name": "Realtime API (Node.js)",
+        "request": "launch",
+        "program": "${workspaceFolder}/services/realtime-api/src/index.ts",
+        "runtimeExecutable": "npx",
+        "runtimeArgs": [
+          "tsx"
+        ],
+        "envFile": "${workspaceFolder}/.env",
+        "cwd": "${workspaceFolder}/services/realtime-api",
+        "skipFiles": [
+          "<node_internals>/**"
+        ]
+      },
+      {
+        "type": "node",
+        "name": "Notification API (Node.js)",
+        "request": "launch",
+        "program": "${workspaceFolder}/services/notification-api/src/index.ts",
+        "runtimeExecutable": "npx",
+        "runtimeArgs": [
+          "tsx"
+        ],
+        "envFile": "${workspaceFolder}/.env",
+        "cwd": "${workspaceFolder}/services/notification-api",
+        "skipFiles": [
+          "<node_internals>/**"
+        ]
+      },
+      {
+        "type": "node",
+        "name": "Worker (BullMQ)",
+        "request": "launch",
+        "program": "${workspaceFolder}/services/worker/src/index.ts",
+        "runtimeExecutable": "npx",
+        "runtimeArgs": [
+          "tsx"
+        ],
+        "envFile": "${workspaceFolder}/.env",
+        "cwd": "${workspaceFolder}/services/worker",
+        "skipFiles": [
+          "<node_internals>/**"
+        ]
+      },
+      {
+        "type": "node",
+        "name": "Customer Web (Vite Dev Server)",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": [
+          "run",
+          "dev"
+        ],
+        "cwd": "${workspaceFolder}/apps/customer-web",
+        "serverReadyAction": {
+          "pattern": "Local:.*http://localhost:([0-9]+)",
+          "uriFormat": "http://localhost:%s",
+          "action": "openExternally"
+        }
+      },
+      {
+        "type": "dart",
+        "name": "Customer Mobile (Flutter)",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "cwd": "${workspaceFolder}/apps/customer-mobile",
+        "flutterMode": "debug"
+      },
+      {
+        "type": "dart",
+        "name": "Delivery Mobile (Flutter)",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "cwd": "${workspaceFolder}/apps/delivery-mobile",
+        "flutterMode": "debug"
+      },
+      {
+        "type": "dart",
+        "name": "Store Mobile (Flutter)",
+        "request": "launch",
+        "program": "lib/main.dart",
+        "cwd": "${workspaceFolder}/apps/store-mobile",
+        "flutterMode": "debug"
+      }
+    ],
+    "compounds": [
+      {
+        "name": "\ud83d\ude80 Full Stack (Core API + Realtime + Notification + Worker)",
+        "configurations": [
+          "Core API (Spring Boot Dev)",
+          "Realtime API (Node.js)",
+          "Notification API (Node.js)",
+          "Worker (BullMQ)"
+        ],
+        "stopAll": true
+      },
+      {
+        "name": "\ud83d\udcf1 All Flutter Apps",
+        "configurations": [
+          "Customer Mobile (Flutter)",
+          "Delivery Mobile (Flutter)",
+          "Store Mobile (Flutter)"
+        ],
+        "stopAll": true
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "\ud83d\udc33 Docker: Start All Services",
+        "type": "shell",
+        "command": "docker compose up -d",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\ud83d\udc33 Docker: Stop All Services",
+        "type": "shell",
+        "command": "docker compose down",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\u2699\ufe0f Core API: Build (Maven)",
+        "type": "shell",
+        "command": "mvn clean package -DskipTests",
+        "options": {
+          "cwd": "${workspaceFolder}/services/core-api"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": "$javac"
+      },
+      {
+        "label": "\u2699\ufe0f Core API: Run Tests",
+        "type": "shell",
+        "command": "mvn test",
+        "options": {
+          "cwd": "${workspaceFolder}/services/core-api"
+        },
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": "$javac"
+      },
+      {
+        "label": "\ud83c\udf10 Customer Web: Dev Server",
+        "type": "shell",
+        "command": "npm run dev",
+        "options": {
+          "cwd": "${workspaceFolder}/apps/customer-web"
+        },
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": {
+          "pattern": {
+            "regexp": "^(.*)$",
+            "message": 1
+          },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "VITE",
+            "endsPattern": "ready in"
+          }
+        }
+      },
+      {
+        "label": "\ud83c\udfea Store Web: Dev Server",
+        "type": "shell",
+        "command": "npm run dev",
+        "options": {
+          "cwd": "${workspaceFolder}/apps/store-web"
+        },
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\ud83d\udd11 Admin Web: Dev Server",
+        "type": "shell",
+        "command": "npm run dev",
+        "options": {
+          "cwd": "${workspaceFolder}/apps/admin-web"
+        },
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\ud83d\udce6 Install All Node Dependencies",
+        "type": "shell",
+        "command": "for dir in apps/customer-web apps/store-web apps/admin-web services/realtime-api services/notification-api services/worker; do echo \"Installing $dir\" && npm install --prefix $dir; done",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\ud83d\udcf1 Customer Mobile: Flutter pub get",
+        "type": "shell",
+        "command": "flutter pub get",
+        "options": {
+          "cwd": "${workspaceFolder}/apps/customer-mobile"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\ud83d\udcf1 All Flutter: pub get",
+        "type": "shell",
+        "command": "for dir in apps/customer-mobile apps/delivery-mobile apps/store-mobile; do echo \"flutter pub get: $dir\" && flutter pub get --directory=$dir; done",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "\ud83d\uddc4\ufe0f DB: Run Migrations",
+        "type": "shell",
+        "command": "mvn flyway:info",
+        "options": {
+          "cwd": "/services/core-api"
+        },
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
 }
