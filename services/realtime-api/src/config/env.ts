@@ -4,7 +4,7 @@ dotenv.config();
 
 export const config = {
   port: parseInt(process.env.REALTIME_API_PORT || '3001', 10),
-  jwtSecret: process.env.JWT_SECRET || 'your-default-jwt-secret-key-change-in-production-must-be-256-bits-long',
+  jwtSecret: process.env.JWT_SECRET || '404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970',
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
     port: parseInt(process.env.REDIS_PORT || '6379', 10),
