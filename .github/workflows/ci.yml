@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   core-api-validation:
     name: Core API (Java 21 / Spring Boot)
