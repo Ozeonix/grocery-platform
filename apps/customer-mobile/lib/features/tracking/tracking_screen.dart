@@ -15,7 +15,10 @@ class TrackingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Track #$orderNumber'),
+        title: Text(
+          'Track #$orderNumber',
+          style: const TextStyle(fontWeight: FontWeight.w800, color: AppTheme.navy),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -26,9 +29,9 @@ class TrackingScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.green.shade50,
+                color: const Color(0xFFE6F6EF),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.green.shade200),
+                border: Border.all(color: const Color(0x3300A86B)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,14 +39,14 @@ class TrackingScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Estimated Arrival',
-                        style: TextStyle(color: Colors.green.shade800, fontSize: 12, fontWeight: FontWeight.w600),
+                        style: TextStyle(color: Color(0xFF008653), fontSize: 12, fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: 4),
-                      Text(
+                      const Text(
                         '~15 Mins',
-                        style: TextStyle(color: Colors.green.shade900, fontSize: 22, fontWeight: FontWeight.bold),
+                        style: TextStyle(color: AppTheme.navy, fontSize: 22, fontWeight: FontWeight.w900),
                       ),
                     ],
                   ),
@@ -52,23 +55,23 @@ class TrackingScreen extends StatelessWidget {
                     children: [
                       const Text(
                         'Delivery OTP',
-                        style: TextStyle(color: Colors.black54, fontSize: 11),
+                        style: TextStyle(color: AppTheme.textSecondary, fontSize: 11, fontWeight: FontWeight.w600),
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: 4),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppTheme.primary),
                         ),
                         child: Text(
                           deliveryOtp,
                           style: const TextStyle(
                             fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 2,
-                            color: AppTheme.primaryDark,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 2.5,
+                            color: AppTheme.primary,
                           ),
                         ),
                       ),
@@ -79,34 +82,47 @@ class TrackingScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Live GPS Status
+            // Live GPS Status Container
             Container(
               height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                color: AppTheme.surface,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: AppTheme.coolGray),
+                boxShadow: const [
+                  BoxShadow(color: Color(0x0A04284A), blurRadius: 8, offset: Offset(0, 2)),
+                ],
               ),
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.map, size: 36, color: Colors.black54),
-                  SizedBox(height: 6),
-                  Text('Rider is on the way (1.2 km away)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                  Text('Alex Mercer • Motorbike (KA-03-HA-8821)', style: TextStyle(color: Colors.black54, fontSize: 11)),
+                  Icon(Icons.two_wheeler, size: 36, color: AppTheme.primary),
+                  SizedBox(height: 8),
+                  Text(
+                    'Rider is en route (1.2 km away)',
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14, color: AppTheme.navy),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    'Alex Mercer • Motorbike (BA-02-PA-8821)',
+                    style: TextStyle(color: AppTheme.textSecondary, fontSize: 12),
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 24),
 
             // Steps
-            const Text('Delivery Progress', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const Text(
+              'Delivery Stepper',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: AppTheme.navy),
+            ),
             const SizedBox(height: 16),
             _stepTile(icon: Icons.check_circle, title: 'Order Confirmed', subtitle: 'Payment verified', isDone: true),
-            _stepTile(icon: Icons.store, title: 'Store Packed Items', subtitle: 'Fresh Harvest Market', isDone: true),
-            _stepTile(icon: Icons.two_wheeler, title: 'Rider Out for Delivery', subtitle: 'On the way to your door', isDone: true),
-            _stepTile(icon: Icons.home, title: 'Delivered', subtitle: 'Share OTP on arrival', isDone: false),
+            _stepTile(icon: Icons.store, title: 'Store Packed Items', subtitle: 'Fresh Harvest Market Hub', isDone: true),
+            _stepTile(icon: Icons.delivery_dining, title: 'Rider Out for Delivery', subtitle: 'On the way to your address', isDone: true),
+            _stepTile(icon: Icons.home, title: 'Delivered', subtitle: 'Verify OTP on doorstep handover', isDone: false),
           ],
         ),
       ),
@@ -125,8 +141,8 @@ class TrackingScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 16,
-            backgroundColor: isDone ? AppTheme.primary.withOpacity(0.15) : Colors.grey.shade200,
-            child: Icon(icon, size: 18, color: isDone ? AppTheme.primaryDark : Colors.grey),
+            backgroundColor: isDone ? const Color(0xFFE6F6EF) : AppTheme.coolGray,
+            child: Icon(icon, size: 18, color: isDone ? AppTheme.secondary : AppTheme.textSecondary),
           ),
           const SizedBox(width: 12),
           Column(
@@ -135,12 +151,12 @@ class TrackingScreen extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                   fontSize: 14,
-                  color: isDone ? Colors.black87 : Colors.grey,
+                  color: isDone ? AppTheme.navy : AppTheme.textSecondary,
                 ),
               ),
-              Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.black54)),
+              Text(subtitle, style: const TextStyle(fontSize: 12, color: AppTheme.textSecondary)),
             ],
           ),
         ],

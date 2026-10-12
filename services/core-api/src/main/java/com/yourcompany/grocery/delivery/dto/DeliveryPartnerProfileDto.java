@@ -37,7 +37,7 @@ public class DeliveryPartnerProfileDto {
                 .userId(partner.getUser() != null ? partner.getUser().getId() : null)
                 .fullName(partner.getUser() != null ? partner.getUser().getFirstName() + " " + partner.getUser().getLastName() : null)
                 .email(partner.getUser() != null ? partner.getUser().getEmail() : null)
-                .phone(partner.getUser() != null ? partner.getUser().getPhoneNumber() : null)
+                .phone(partner.getUser() != null ? partner.getUser().getPhone() : null)
                 .vehicleType(partner.getVehicleType())
                 .vehicleNumber(partner.getVehicleNumber())
                 .licenseNumber(partner.getLicenseNumber())

@@ -12,7 +12,7 @@ class GroceryStoreMerchantApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FreshCart Store Merchant',
+      title: 'Ozeonix Store Merchant',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const StoreOrdersScreen(),

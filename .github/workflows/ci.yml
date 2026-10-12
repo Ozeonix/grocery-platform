@@ -57,6 +57,10 @@ jobs:
         working-directory: services/notification-api
         run: npm ci && npm run build
 
+      - name: Validate Worker Background Service
+        working-directory: services/worker
+        run: npm ci && npm run build
+
   mobile-apps-validation:
     name: Flutter Mobile Applications
     runs-on: ubuntu-latest

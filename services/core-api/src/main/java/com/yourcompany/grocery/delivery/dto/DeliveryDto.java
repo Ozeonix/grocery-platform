@@ -53,7 +53,7 @@ public class DeliveryDto {
                         ? delivery.getDeliveryPartner().getUser().getFirstName() + " " + delivery.getDeliveryPartner().getUser().getLastName()
                         : null)
                 .deliveryPartnerPhone(delivery.getDeliveryPartner() != null && delivery.getDeliveryPartner().getUser() != null
-                        ? delivery.getDeliveryPartner().getUser().getPhoneNumber()
+                        ? delivery.getDeliveryPartner().getUser().getPhone()
                         : null)
                 .status(delivery.getStatus())
                 .pickupOtp(maskOtps ? null : delivery.getPickupOtp())

@@ -12,7 +12,7 @@ class GroceryDeliveryPartnerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FreshCart Delivery Partner',
+      title: 'Ozeonix Delivery Partner',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const DeliveryDashboardScreen(),

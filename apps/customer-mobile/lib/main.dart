@@ -12,7 +12,7 @@ class GroceryCustomerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FreshCart Grocery',
+      title: 'Ozeonix Grocery',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const HomeScreen(),

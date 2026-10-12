@@ -1,11 +1,13 @@
 package com.yourcompany.grocery.payments.service;
 
 import com.yourcompany.grocery.payments.entity.Payment;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Primary
 @Component("mockPaymentGateway")
 public class MockPaymentGateway implements PaymentGateway {
 

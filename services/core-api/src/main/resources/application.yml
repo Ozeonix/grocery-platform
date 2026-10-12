@@ -62,3 +62,15 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+
+# Production Payment Gateways Configuration
+payments:
+  khalti:
+    public-key: ${KHALTI_PUBLIC_KEY:test_public_key}
+    secret-key: ${KHALTI_SECRET_KEY:test_secret_key}
+    base-url: ${KHALTI_BASE_URL:https://a.khalti.com/api/v2}
+  esewa:
+    merchant-code: ${ESEWA_MERCHANT_CODE:EPAYTEST}
+    secret-key: ${ESEWA_SECRET_KEY:8gBm/:&EnhH.1/q}
+    base-url: ${ESEWA_BASE_URL:https://rc-epay.esewa.com.np}
+
