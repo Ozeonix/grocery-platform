@@ -78,6 +78,10 @@ async function request(url, options = {}) {
     if (err.name === 'AbortError') {
       throw new Error(`Request timed out after ${timeoutMs}ms`);
     }
+    if (err.cause?.code === 'ECONNREFUSED' || err.message?.includes('fetch failed')) {
+      const origin = new URL(url).origin;
+      throw new Error(`Server is offline at ${origin} (Connection refused). Start the service or Docker containers to test live endpoints.`);
+    }
     throw err;
   } finally {
     clearTimeout(timeout);
