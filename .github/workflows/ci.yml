@@ -21,9 +21,9 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Compile and validate Spring Boot Core API
+      - name: Run automated test suite for Spring Boot Core API
         working-directory: services/core-api
-        run: mvn -B clean compile
+        run: mvn -B clean test
 
   web-and-node-services:
     name: Web Applications & Node Services

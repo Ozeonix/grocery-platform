@@ -49,6 +49,9 @@ public class AuthController {
 
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<UserDto>> getCurrentUser(@AuthenticationPrincipal UserPrincipal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         UserDto user = userService.getUserProfile(principal.getId());
         return ResponseEntity.ok(ApiResponse.success(user));
     }
